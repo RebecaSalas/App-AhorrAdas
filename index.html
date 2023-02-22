@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="icon"
+      type="imagenes/png"
+      href="./imagenes/RS_Dseñadora web.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+      integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+  />
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"
+      integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+      integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <title>App de Gastos e Ingresos</title>
+  </head>
+
+  <body>
+
+    <!--Inicio del header-->
+    <header>
+      <nav class="navbar has-shadow is-spaced is-danger menu-principal"> 
+        
+        <div class="navbar-brand">
+          <a class="navbar-item"> 
+            <h1 class="title is-size-2-desktop is-size-3 has-text-white ahorradas">
+              <i class="fa-solid fa-wallet mr-3"></i>AhorrADAs
+            </h1>
+          </a>
+        </div>
+
+        <div class="navbar-menu">
+          <div class="navbar-end">
+            <a href="#balance" class="navbar-item clic-menu" id="clic-balance">
+            <i class="fas fa-chart-line mr-1"></i>Balance</a>
+          
+            <a href="#categorias" class="navbar-item clic-menu" id="clic-categorias">
+            <i class="fa-solid fa-tags mr-1"></i>Categorías</a>
+          
+            <a href="#reportes" class="navbar-item clic-menu" id="clic-reportes">
+            <i class="fa-sharp fa-solid fa-chart-pie mr-1"></i>Reportes</a>
+          </div>
+        </div>
+
+      </nav>
+    </header>
+    <!--Fin del header-->
+
+
+    <!--Sección de balance-->
+
+    <section class="mt-5 todo-balance" id="id-balance">
+      <div class="container">
+         
+        <!-- Balance -->
+
+            <div class="columns is-multiline panel">
+              <div class="column  is-offset-1">
+
+                <div class="container-balance">
+                    <h2 class="has-text-weight-bold is-size-4 resumen-balance">Balance</h2>
+                  <div class="resumen">
+                    <div class="columns is-vcentered">
+                      <div class="column is-two-thirds ganancias" style="margin-right: 10px;">Ganancias</div>
+                      <div class="column is-one-third resultado has-text-primary" id="ganancias">+$0</div>
+                    </div>
+                    <div class="columns is-vcentered">
+                      <div class="column is-two-thirds gastos" style="margin-right: 10px;">Gastos</div>
+                      <div class="column is-one-third resultado has-text-danger" id="gastos">-$0</div>
+                    </div>
+                    <div class="columns is-vcentered">
+                      <div class="column is-two-thirds total" style="margin-right: 10px;">Total</div>
+                      <div class="column is-one-third resultado has-text-info" id="total">$0</div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Filtros -->
+
+          <div class="columns is-multiline panel">
+            <div class="column is-offset-1 container-balance"><div>
+              <h3 class="has-text-weight-bold is-size-4  resumen-filtros">Filtros</h3>
+              <div class="column has-text-right">
+                <a href="#" id="ocultar-filtros">Ocultar filtros</a>
+              </div>
+
+              <div id="filtros">
+
+                <div class="nombres-filtro">
+                  <label class="label" for="filtro-tipo">Tipo</label>
+                  <div class="opciones-filtros">
+                    <div class="seleccionar">
+                      <select id="filtro-tipo">
+                        <option value="todos">Todos</option>
+                        <option value="gasto">Gasto</option>
+                        <option value="ganancia">Ganancia</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              
+
+                <div class="nombres-filtro">
+                  <label class="label" for="filtro-categoria">Categoría</label>
+                  <div class="opciones-filtros">
+                    <div class="seleccionar">
+                      <select
+                        class="filtro-categoria categorias-select" id="filtro-categoria">
+                        <option>Todas</option>
+                        <option>Servicios</option>
+                        <option>Salidas</option>
+                        <option>Transporte</option>
+                        <option>Trabajo</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="nombres-filtro">
+                  <label class="label" for="filtro-fecha">Desde</label>
+                  <div class="opciones-filtros">
+                    <div class="seleccionar">
+                      <input class="input" type="date" name="" id="filtro-fecha"/>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="nombres-filtro">
+                  <label class="label" for="filtro-orden">Ordenar por</label>
+                  <div class="opciones-filtros">
+                    <div class="seleccionar">
+                      <select id="filtro-orden">
+                        <option value="mas_reciente">Más reciente</option>
+                        <option value="menos_reciente">Menos reciente</option>
+                        <option value="mayor_monto">Mayor monto</option>
+                        <option value="menor_monto">Menor monto</option>
+                        <option value="A/Z">A/Z</option>
+                        <option value="Z/A">Z/A</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+         
+<!-- Operaciones -->
+          <div class="column is-multiline">
+            <div class="column is-offset-1 operaciones-contenedor">
+              <div class="columns mb-4">
+                <div class="column">
+                  <h3 class="is-size-4 has-text-weight-bold">Operaciones</h3>
+                </div>
+                <div class="column has-text-right-tablet">
+                  <button type="button" class="button is-danger" id="click-operacion">+ Nueva operación</button>
+                </div>
+              </div>
+
+              <!-- Nueva operación -->
+
+              <div class="is-hidden nueva" id="crear-operaciones">
+                <div class="columns has-text-weight-semibold is-hidden-mobile">
+                  <div class="column is-3">Descripción</div>
+                  <div class="column is-3">Categoría</div>
+                  <div class="column is-2 has-text-right">Fecha</div>
+                  <div class="column is-2 has-text-right">Monto</div>
+                  <div class="column is-2 has-text-right">Acciones</div>
+                </div>
+                <div id="operaciones"></div>
+              </div>
+              <div class="my-6 py-6" id="sin-operaciones">
+                <figure class="image">
+                  <img src="imagenes/operaciones.png" class="" alt="" />
+                </figure>
+                <h4 class="is-size-4 has-text-centered mt-6 mb-4 has-text-weight-semibold"> Sin resultados</h4>
+                <p class="has-text-centered"> Cambia los filtros o agrega operaciones</p>
+              </div>
+            </div>
+       
+          </div>
+      </div>
+    </section>
+    
+    <!--Fin  sección de balance-->
+
+
+    <!-- Sección de categorías -->
+
+    <section class="categorias">
+      
+      <h2 class="title is-size-2 has-text-weight-bold">Categorías</h2>
+      <label class="label mt-6" for="categoria-input">Nombre</label>
+
+      <div class="agregar-categorias field is-grouped">
+          <input type="text" class="mr-3" id="input" placeholder="Agregar">
+          <button class="button is-danger" id="agregar-categoria-boton"> Agregar </button>
+      </div>
+  
+      
+      <div class="seccion-categoria">
+          <ul id="lista">
+
+              <li id="elemento">
+                  <p class="text"> Servicios </p>
+                  <i class="fas fa-trash de" data="eliminado" id="0"></i>
+                  <i class="fa-sharp fa-solid fa-pen-to-square"data="editado" id="0"></i>
+              </li>
+              
+              <li id="elemento">
+                  <p class="text"> Salidas </p>
+                  <i class="fas fa-trash de " data="eliminado" id="0"></i> 
+                  <i class="fa-sharp fa-solid fa-pen-to-square"data="editado" id="0"></i>
+              </li>
+     
+              <li id="elemento">
+                <p class="text"> Educación </p>
+                <i class="fas fa-trash de " data="eliminado" id="0"></i> 
+                <i class="fa-sharp fa-solid fa-pen-to-square"data="editado" id="0"></i>
+            </li>  
+
+            <li id="elemento">
+                <p class="text"> Transporte </p>
+                <i class="fas fa-trash de " data="eliminado" id="0"></i> 
+                <i class="fa-sharp fa-solid fa-pen-to-square"data="editado" id="0"></i>
+            </li>
+            
+          </ul>
+      </div>   
+
+    </section> 
+
+<!-- Editar categorías -->
+
+>
+
+    <section class="columns is-multiline  mt-5 is-hidden" id="editar-categoria">
+      <div class="container">
+        <div class="column  is-offset-1">
+          <div
+            class="is-8-widescreen">
+            <div class="editar">
+              <h2 class="title is-size-2 has-text-weight-bold">Editar categoría</h2>
+              <label class="label mt-6" for="editar-categoria-input">Nombre</label>
+              <div class="field is-grouped">
+                <div class="control is-expanded">
+                  <input
+                    class="input"
+                    type="text"
+                    name=""
+                    id="editar-categoria-input"
+                  />
+                </div>
+              </div>
+              <div class="buttons mt-6">
+                <button class="button is-light" id="cancelar-categoria-boton">
+                  Cancelar
+                </button>
+                <button class="button is-danger" id="editar-categoria-boton">
+                  Editar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+ <!-- Fin de sección de categorías -->
+
+
+<!-- Seccion de reportes -->
+<section class="reportes">
+  <h2 class="title is-size-2 has-text-weight-bold pb-2">Reportes</h2>
+  <div id="sin-reportes">
+    <div class="my-6 py-6">
+      <figure class="image">
+        <img src="imagenes/reportes.png" class="" alt="" />
+      </figure>
+      <h4 class="is-size-4 has-text-centered mt-6 mb-4 has-text-weight-semibold">
+        Operaciones insuficientes
+      </h4>
+      <p class="has-text-centered">
+        Prueba agregando más operaciones
+      </p>
+    </div>
+  </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
