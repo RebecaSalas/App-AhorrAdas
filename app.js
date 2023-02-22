@@ -100,7 +100,7 @@ const elementos = document.getElementsByClassName('text');
 const editarIconos = document.getElementsByClassName('fa-pen-to-square');
 
 // Sección de edición de categoría
-const vistaEditarCategoria = document.getElementById('editar-categoria');
+const EditarCategoria = document.getElementById('editar-categoria');
 const editarCategoriaInput = document.getElementById('editar-categoria-input');
 
 // Controlador de evento para el icono de editar
