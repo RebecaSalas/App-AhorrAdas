@@ -107,7 +107,7 @@ const editarCategoriaInput = document.getElementById('editar-categoria-input');
 const editarCategoria = (event) => {
   const categoria = event.target.parentNode.querySelector('.text').textContent;
   editarCategoriaInput.value = categoria;
-  vistaEditarCategoria.classList.remove('is-hidden');
+  EditarCategoria.classList.remove('is-hidden');
 };
 
 // Agregar evento de click a los iconos de editar
